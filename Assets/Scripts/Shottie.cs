@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using VRTK;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Shottie : VRTK_InteractableObject
 {
 	[Header("Shottie Properties", order = 4)]
@@ -10,37 +11,39 @@ public class Shottie : VRTK_InteractableObject
 
 	public float BulletSpeed = 1500;
 
-	GameObject _initialGrabbingObject;
+	Rigidbody _rigidbody;
 
 	protected override void Awake()
 	{
 		base.Awake();
+
+		_rigidbody = GetComponent<Rigidbody>();
 	}
 
 	public override void Grabbed(GameObject currentGrabbingObject)
 	{
 		base.Grabbed(currentGrabbingObject);
-
-		if (!_initialGrabbingObject)
-			_initialGrabbingObject = currentGrabbingObject;
 	}
 
 	public override void Ungrabbed(GameObject previousGrabbingObject)
 	{
 		base.Ungrabbed(previousGrabbingObject);
 
-		if (_initialGrabbingObject == previousGrabbingObject)
-			_initialGrabbingObject = null;
-
-		GetComponent<Rigidbody>().isKinematic = false;
+		// drop the gun if the first grabbing controller has ungrabbed
+		if (!GetGrabbingObject())
+		{
+			_rigidbody.isKinematic = false;
+		}
 	}
 
 	public override void StartUsing(GameObject currentUsingObject)
 	{
-		if (currentUsingObject != _initialGrabbingObject)
+		// only the first grabbing controller can shoot
+		if (currentUsingObject != GetGrabbingObject())
 			return;
 
 		base.StartUsing(currentUsingObject);
+
 		var bullet = BulletPool.Spawn();
 		if (bullet != null)
 		{
