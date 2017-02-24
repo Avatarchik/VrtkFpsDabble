@@ -652,11 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableWhenIdle: 1
-  touchHighlightColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   allowedTouchControllers: 0
   isGrabbable: 1
   holdButtonToGrab: 0
@@ -673,29 +669,9 @@ MonoBehaviour:
   useOverrideButton: 0
   allowedUseControllers: 0
   usingState: 0
-  interactableRigidbody: {fileID: 0}
-  touchingObjects: []
-  grabbingObjects: []
-  usingObject: {fileID: 0}
-  trackPoint: {fileID: 0}
-  customTrackPoint: 0
-  primaryControllerAttachPoint: {fileID: 0}
-  secondaryControllerAttachPoint: {fileID: 0}
-  previousParent: {fileID: 0}
-  previousKinematicState: 0
-  previousIsGrabbable: 0
-  forcedDropped: 0
-  forceDisabled: 0
-  objectHighlighter: {fileID: 0}
-  autoHighlighter: 0
-  hoveredOverSnapDropZone: 0
-  snappedInSnapDropZone: 0
-  storedSnapDropZone: {fileID: 0}
-  previousLocalScale: {x: 0, y: 0, z: 0}
   BulletPool: {fileID: 0}
   BulletSpawnPoint: {fileID: 4765004929180194}
-  BulletSpeed: 1000
-  _initialGrabbingObject: {fileID: 0}
+  BulletSpeed: 1500
 --- !u!114 &114567725311174638
 MonoBehaviour:
   m_ObjectHideFlags: 1
